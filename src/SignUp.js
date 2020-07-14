@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useCallback } from "react";
+import { auth } from "./Firebase";
+//Material UI
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,10 +14,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { signInWithGoogle, auth } from "./Firebase";
-import { firestore } from "./Firebase";
-import { AuthContext } from "./Auth";
-import { Redirect, withRouter } from "react-router-dom";
 
 const Copyright = () => {
   return (
@@ -48,14 +46,13 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-const SignIn = ({ history }) => {
-  const classes = useStyles();
-  const handleSignIn = useCallback(
+const SignUp = ({ history }) => {
+  const handleSignUp = useCallback(
     async (event) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-        await auth.signInWithEmailAndPassword(email.value, password.value);
+        await auth.createUserWithEmailAndPassword(email.value, password.value);
         history.push("/");
       } catch (error) {
         alert(error);
@@ -63,11 +60,7 @@ const SignIn = ({ history }) => {
     },
     [history]
   );
-  const { currentUser } = useContext(AuthContext);
-  if (currentUser) {
-    return <Redirect to="/" />;
-  }
-
+  const classes = useStyles();
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -78,7 +71,7 @@ const SignIn = ({ history }) => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSignIn}>
+        <form className={classes.form} noValidate onSubmit={handleSignUp}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -112,7 +105,7 @@ const SignIn = ({ history }) => {
             color="primary"
             className={classes.submit}
           >
-            Sign In with Google
+            Sign up
           </Button>
           <Grid container>
             <Grid item xs>
@@ -134,4 +127,5 @@ const SignIn = ({ history }) => {
     </Container>
   );
 };
-export default withRouter(SignIn);
+
+export default SignUp;
