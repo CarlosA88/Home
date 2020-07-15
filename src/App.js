@@ -7,18 +7,23 @@ import Home from "./Home";
 import { AuthProvider } from "./Auth";
 import SignUp from "./SignUp";
 import UserProfile from "./UserProfile";
+//Adding theme
+import { ThemeProvider } from "@material-ui/core/styles";
+import { theme } from "./components/ui/Theme";
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <ButtonAppBar />
-        <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/signin" component={SignIn} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/userprofile" component={UserProfile} />
-        </Switch>
+        <ThemeProvider theme={theme}>
+          <ButtonAppBar />
+          <Switch>
+            <Route path="/" component={Home} exact />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/userprofile" component={UserProfile} />
+          </Switch>
+        </ThemeProvider>
       </AuthProvider>
     </div>
   );

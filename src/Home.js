@@ -10,9 +10,6 @@ const Home = () => {
     <div>
       <h1>Home page</h1>
    
-      {/* <Button color="inherit">
-        <Link onClick={deleteUser}>Delete user</Link>
-      </Button> */}
     </div>
   );
 };

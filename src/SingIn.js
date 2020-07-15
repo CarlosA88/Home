@@ -15,8 +15,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { AuthContext } from "./Auth";
 import { Redirect, withRouter } from "react-router-dom";
-import { signIn, resetPassword, signInGoogle } from "./Functions";
+import { resetPassword, signInGoogle } from "./Functions";
 import { auth } from "./Firebase";
+import google from "./assets/g-logo.png";
 
 const Copyright = () => {
   return (
@@ -115,25 +116,44 @@ const SignIn = ({ history }) => {
           >
             Sign In
           </Button>
+
           <Grid container>
             <Grid item xs>
               <Linki href="#" variant="body2" onClick={resetPassword}>
-                Forgot password?
+                {/* Forgot password? */}
               </Linki>
             </Grid>
-            <Grid item md>
+            <Grid item>
               <Linki href="#" variant="body2" to="/signup">
-                <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
-              </Linki>
-            </Grid>
-            <Grid item xs>
-              <Linki href="#" variant="body2" onClick={signInGoogle}>
-                Google
+                {/* <Link to="/signup">{"Don't have an account? Sign Up"}</Link> */}
               </Linki>
             </Grid>
           </Grid>
         </form>
       </div>
+      <Box
+        boxShadow={1}
+        bgcolor="background.paper"
+        style={{
+          borderRadius: 9,
+        }}
+      >
+        <Button
+          variant="contained"
+          fullWidth
+          color="primary"
+          disableElevation
+          onClick={signInGoogle}
+          style={{
+            backgroundColor: "white",
+            color: "grey",
+            shadows: 9,
+          }}
+        >
+          <img src={google} alt="" srcset="" height="25px" /> Sign in with
+          Google
+        </Button>
+      </Box>
       <Box mt={8}>
         <Copyright />
       </Box>

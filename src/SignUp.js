@@ -14,9 +14,10 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 //Functions
-import { signUp, resetPassword } from "./Functions";
+import { signInGoogle } from "./Functions";
 import { withRouter } from "react-router-dom";
 import { auth } from "./Firebase";
+import google from "./assets/g-logo.png";
 
 const Copyright = () => {
   return (
@@ -124,6 +125,28 @@ const SignUp = ({ history }) => {
           </Grid>
         </form>
       </div>
+      <Box
+        boxShadow={1}
+        bgcolor="background.paper"
+        style={{
+          borderRadius: 9,
+        }}
+      >
+        <Button
+          variant="contained"
+          fullWidth
+          color="primary"
+          disableElevation
+          onClick={signInGoogle}
+          style={{
+            backgroundColor: "white",
+            color: "grey",
+          }}
+        >
+          <img src={google} alt="" srcset="" height="25px" /> Sign in with
+          Google
+        </Button>
+      </Box>
       <Box mt={8}>
         <Copyright />
       </Box>
