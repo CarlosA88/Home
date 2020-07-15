@@ -6,20 +6,20 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import { AuthProvider } from "./Auth";
 import SignUp from "./SignUp";
+import UserProfile from "./UserProfile";
 
 function App() {
   return (
     <div className="App">
-      <ButtonAppBar />
       <AuthProvider>
+        <ButtonAppBar />
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
+          <Route path="/userprofile" component={UserProfile} />
         </Switch>
       </AuthProvider>
-
-      {/* <SignIn /> */}
     </div>
   );
 }

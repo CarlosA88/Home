@@ -6,7 +6,7 @@ export const AuthContext = React.createContext();
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
-  //Update the user every time it change on db
+  //Update the user every time it change on db(Observer pattern)
   useEffect(() => {
     auth.onAuthStateChanged(setCurrentUser);
   }, []);

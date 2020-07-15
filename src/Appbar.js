@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -6,9 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link, Redirect } from "react-router-dom";
-import { AuthContext } from "./Auth";
-import { auth } from "./Firebase";
+import { Link } from "react-router-dom";
+import UserProfile from "./UserProfile";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,15 +34,23 @@ export default function ButtonAppBar() {
             color="inherit"
             aria-label="menu"
           >
-            <MenuIcon />
             <Link to="/" className="navLink" style={{ color: "white" }}>
-              Home
-            </Link>
+              <MenuIcon />
+            </Link>{" "}
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
 
+          <Button color="inherit">
+            <Link
+              to="/userprofile"
+              className="navLink"
+              style={{ color: "white" }}
+            >
+              User settings
+            </Link>
+          </Button>
           <Button color="inherit">
             <Link to="/signin" style={{ color: "white" }}>
               Login

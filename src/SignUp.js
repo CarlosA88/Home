@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import { auth } from "./Firebase";
 //Material UI
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -14,6 +13,10 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+//Functions
+import { signUp, resetPassword } from "./Functions";
+import { withRouter } from "react-router-dom";
+import { auth } from "./Firebase";
 
 const Copyright = () => {
   return (
@@ -109,14 +112,14 @@ const SignUp = ({ history }) => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              {/* <Link href="#" variant="body2" onClick={resetPassword}>
                 Forgot password?
-              </Link>
+              </Link> */}
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              {/* <Link href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
-              </Link>
+              </Link> */}
             </Grid>
           </Grid>
         </form>
@@ -128,4 +131,4 @@ const SignUp = ({ history }) => {
   );
 };
 
-export default SignUp;
+export default withRouter(SignUp);
