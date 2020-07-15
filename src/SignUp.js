@@ -69,7 +69,7 @@ const SignUp = ({ history }) => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign Up
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSignUp}>
           <TextField
