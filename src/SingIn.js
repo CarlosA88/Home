@@ -33,7 +33,7 @@ const Copyright = () => {
 };
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -150,8 +150,7 @@ const SignIn = ({ history }) => {
             shadows: 9,
           }}
         >
-          <img src={google} alt="" srcset="" height="25px" /> Sign in with
-          Google
+          <img src={google} alt="" height="25px" /> Sign in with Google
         </Button>
       </Box>
       <Box mt={8}>

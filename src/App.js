@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "./logo.svg";
 import "./App.css";
 import SignIn from "./SingIn";
 import ButtonAppBar from "./Appbar";
@@ -17,6 +18,14 @@ function App() {
       <AuthProvider>
         <ThemeProvider theme={theme}>
           <ButtonAppBar />
+          <header className="App-header">
+            <img
+              src={logo}
+              className="App-logo"
+              alt="logo"
+              style={{ textAlign: "center" }}
+            />
+          </header>
           <Switch>
             <Route path="/" component={Home} exact />
             <Route path="/signin" component={SignIn} />

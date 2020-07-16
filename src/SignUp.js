@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 //Material UI
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -15,9 +15,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 //Functions
 import { signInGoogle } from "./Functions";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { auth } from "./Firebase";
 import google from "./assets/g-logo.png";
+import { AuthContext } from "./Auth";
 
 const Copyright = () => {
   return (
@@ -33,7 +34,7 @@ const Copyright = () => {
 };
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -65,6 +66,10 @@ const SignUp = ({ history }) => {
     [history]
   );
   const classes = useStyles();
+  const { currentUser } = useContext(AuthContext);
+  if (currentUser) {
+    return <Redirect to="/" />;
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -143,8 +148,7 @@ const SignUp = ({ history }) => {
             color: "grey",
           }}
         >
-          <img src={google} alt="" srcset="" height="25px" /> Sign in with
-          Google
+          <img src={google} alt="" height="25px" /> Sign in with Google
         </Button>
       </Box>
       <Box mt={8}>

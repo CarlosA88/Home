@@ -17,11 +17,11 @@ const UserProfile = () => {
     return <Redirect to="/" />;
   }
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <h1>User settings</h1>
-      <Button color="inherit">
+      {/* <Button color="inherit">
         <Link onClick={signOut}>Sign out</Link>
-      </Button>
+      </Button> */}
       {/* <Button color="inherit">
         <Link onClick={getProfileData}>Get profile data</Link>
       </Button>

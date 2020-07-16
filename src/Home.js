@@ -1,15 +1,14 @@
-import React, { useContext } from "react";
-import { Button } from "@material-ui/core";
-import { Link, Redirect, withRouter } from "react-router-dom";
+import React from "react";
+import { Typography } from "@material-ui/core";
+import { withRouter } from "react-router-dom";
 
-import { AuthContext } from "./Auth";
 
 const Home = () => {
-
   return (
     <div>
-      <h1>Home page</h1>
-   
+      <Typography variant="h6" component="h2" align="center">
+        Welcome to Learning React.
+      </Typography>
     </div>
   );
 };

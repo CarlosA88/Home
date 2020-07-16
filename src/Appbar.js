@@ -1,47 +1,107 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
+import { Link, Redirect } from "react-router-dom";
+import {
+  useScrollTrigger,
+  CssBaseline,
+  Tabs,
+  List,
+  ListItem,
+} from "@material-ui/core";
+import PropTypes from "prop-types";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
+import { AuthContext } from "./Auth";
+//Drawer
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from "react-router-dom";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import { signOut } from "./Functions";
 
+function ElevationScroll(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+  });
+}
+
+ElevationScroll.propTypes = {
+  children: PropTypes.element.isRequired,
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
+};
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
+  menuIcon: {
     marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
   },
+  toolbarMargin: {
+    ...theme.mixins.toolbar,
+  },
+  tabContainer: {
+    marginLeft: "auto",
+  },
+  tabs: {
+    textTransform: "none",
+    minWidth: 10,
+  },
+  drawerIcon: {
+    height: "50px",
+    width: "50px",
+  },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const { currentUser } = useContext(AuthContext);
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <Link to="/" className="navLink" style={{ color: "white" }}>
-              <MenuIcon />
-            </Link>{" "}
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Arc development
-          </Typography>
-
+  const handleClick = (e) => {
+    setOpenMenu(true);
+  };
+  const handleMenuItemClick = (e) => {
+    setOpenMenu(false);
+  };
+  const handleClose = (e) => {
+    setOpenMenu(false);
+  };
+  const tabs = (
+    <>
+      {currentUser ? (
+        <>
           <Button color="inherit">
+            <Link
+              onClick={signOut}
+              style={{ color: "white", textTransform: "none" }}
+            >
+              SignOut
+            </Link>
+          </Button>
+          <Button color="inherit" className={classes.tabs}>
             <Link
               to="/userprofile"
               className="navLink"
@@ -50,19 +110,111 @@ export default function ButtonAppBar() {
               User settings
             </Link>
           </Button>
-          <Button color="inherit">
+        </>
+      ) : (
+        <Tabs className={classes.tabContainer}>
+          <Button color="inherit" className={classes.tabs}>
             <Link to="/signin" style={{ color: "white" }}>
-              Login
+              SignIn
             </Link>
           </Button>
 
-          <Button color="inherit">
+          <Button color="inherit" className={classes.tabs}>
             <Link to="/signup" style={{ color: "white" }}>
               SingUp
             </Link>
           </Button>
-        </Toolbar>
-      </AppBar>
+        </Tabs>
+      )}
+    </>
+  );
+  //Smallers screens
+  const drawer = (
+    <>
+      <SwipeableDrawer
+        open={openDrawer}
+        onClose={() => setOpenDrawer(false)}
+        onOpen={() => setOpenDrawer(true)}
+      >
+        {currentUser ? (
+          <>
+            <List>
+              <Link
+                onClick={signOut}
+                style={{ color: "black", textTransform: "none" }}
+              >
+                <ListItem
+                  divider
+                  button
+                  component={Link}
+                  onClick={() => setOpenDrawer(false)}
+                  disableTypography
+                >
+                  Sign Out
+                </ListItem>
+              </Link>
+              <ListItem
+                divider
+                button
+                component={Link}
+                onClick={() => setOpenDrawer(false)}
+                to="/userprofile"
+                disableTypography
+              >
+                User settings
+              </ListItem>
+            </List>
+          </>
+        ) : (
+          <List>
+            <ListItem
+              divider
+              button
+              component={Link}
+              onClick={() => setOpenDrawer(false)}
+              to="/signin"
+              disableTypography
+            >
+              Sign In
+            </ListItem>
+            <ListItem
+              divider
+              button
+              component={Link}
+              onClick={() => setOpenDrawer(false)}
+              to="/signup"
+              disableTypography
+            >
+              Sign Up
+            </ListItem>
+          </List>
+        )}
+      </SwipeableDrawer>
+      <IconButton
+        className={classes.menuIcon}
+        onClick={() => setOpenDrawer(!openDrawer)}
+        edge="start"
+        color="inherit"
+        aria-label="menu"
+      >
+        <MenuIcon className={classes.drawerIcon} />
+      </IconButton>
+    </>
+  );
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <ElevationScroll {...props}>
+        <AppBar position="fixed">
+          <Toolbar>
+            <Typography variant="h6" className={classes.title}>
+              React development
+            </Typography>
+            {matches ? drawer : tabs}
+          </Toolbar>
+        </AppBar>
+      </ElevationScroll>
+      <div className={classes.toolbarMargin} />
     </div>
   );
 }
