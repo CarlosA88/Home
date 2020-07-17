@@ -17,7 +17,7 @@ import Container from "@material-ui/core/Container";
 import { signInGoogle } from "./Functions";
 import { withRouter, Redirect } from "react-router-dom";
 import { auth } from "./Firebase";
-import google from "./assets/g-logo.png";
+import google from "./assets/logos.jpg";
 import { AuthContext } from "./Auth";
 
 const Copyright = () => {
@@ -148,7 +148,8 @@ const SignUp = ({ history }) => {
             color: "grey",
           }}
         >
-          <img src={google} alt="" height="25px" /> Sign in with Google
+          <img src={google} alt="" height="25px" />
+          Sign in with Google
         </Button>
       </Box>
       <Box mt={8}>

@@ -17,7 +17,7 @@ import { AuthContext } from "./Auth";
 import { Redirect, withRouter } from "react-router-dom";
 import { resetPassword, signInGoogle } from "./Functions";
 import { auth } from "./Firebase";
-import google from "./assets/g-logo.png";
+import google from "./assets/logos.jpg";
 
 const Copyright = () => {
   return (

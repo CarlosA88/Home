@@ -1,14 +1,7 @@
 import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import { Link, Redirect } from "react-router-dom";
-import {
-  getProfileData,
-  signOut,
-  updateProfile,
-  verifyUser,
-  resetPassword,
-  deleteUser,
-} from "./Functions";
+import { getProfileData, verifyUser, resetPassword } from "./Functions";
 import { AuthContext } from "./Auth";
 
 const UserProfile = () => {
@@ -22,10 +15,10 @@ const UserProfile = () => {
       {/* <Button color="inherit">
         <Link onClick={signOut}>Sign out</Link>
       </Button> */}
-      {/* <Button color="inherit">
+      <Button color="inherit">
         <Link onClick={getProfileData}>Get profile data</Link>
       </Button>
-      <Button color="inherit">
+      {/* <Button color="inherit">
         <Link onClick={updateProfile}>Update Display Name</Link>
       </Button> */}
       <Button color="inherit">
