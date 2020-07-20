@@ -11,10 +11,12 @@ import UserProfile from "./UserProfile";
 //Adding theme
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./components/ui/Theme";
+import { CssBaseline } from "@material-ui/core";
 
 function App() {
   return (
     <div className="App">
+       <CssBaseline />
       <AuthProvider>
         <ThemeProvider theme={theme}>
           <ButtonAppBar />

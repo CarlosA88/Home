@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div>
       <Typography variant="h6" component="h2" align="center">
-        Welcome to Learning React.
+        Welcome to my Portofolio
       </Typography>
     </div>
   );

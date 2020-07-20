@@ -22,6 +22,7 @@ import { AuthContext } from "./Auth";
 import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import { signOut } from "./Functions";
+import CodeIcon from "@material-ui/icons/Code";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -78,6 +79,10 @@ const useStyles = makeStyles((theme) => ({
     // ...theme.typography.tabs,
     color: "white",
   },
+  CodeIcon: {
+    height: "50px",
+    width: "50px",
+  },
 }));
 
 export default function ButtonAppBar(props) {
@@ -101,6 +106,38 @@ export default function ButtonAppBar(props) {
     <>
       {currentUser ? (
         <>
+          <Button>
+            <Link
+              // onClick={signOut}
+              style={{ color: "white", textTransform: "none" }}
+            >
+              Experience
+            </Link>
+          </Button>
+          <Button>
+            <Link
+              // onClick={signOut}
+              style={{ color: "white", textTransform: "none" }}
+            >
+              Education
+            </Link>
+          </Button>
+          <Button>
+            <Link
+              // onClick={signOut}
+              style={{ color: "white", textTransform: "none" }}
+            >
+              Skills
+            </Link>
+          </Button>
+          <Button>
+            <Link
+              // onClick={signOut}
+              style={{ color: "white", textTransform: "none" }}
+            >
+              Expertise
+            </Link>
+          </Button>
           <Button>
             <Link
               onClick={signOut}
@@ -148,6 +185,67 @@ export default function ButtonAppBar(props) {
         {currentUser ? (
           <>
             <List disablePadding>
+              <ListItem
+                divider
+                button
+                component={Link}
+                onClick={() => setOpenDrawer(false)}
+                to="/userprofile"
+                disableTypography={false}
+              >
+                <ListItemText
+                  className={classes.drawerItem}
+                  disableTypography={false}
+                >
+                  Experience
+                </ListItemText>
+              </ListItem>
+              <ListItem
+                divider
+                button
+                component={Link}
+                onClick={() => setOpenDrawer(false)}
+                to="/userprofile"
+                disableTypography={false}
+              >
+                <ListItemText
+                  className={classes.drawerItem}
+                  disableTypography={false}
+                >
+                  Education
+                </ListItemText>
+              </ListItem>
+              <ListItem
+                divider
+                button
+                component={Link}
+                onClick={() => setOpenDrawer(false)}
+                to="/userprofile"
+                disableTypography={false}
+              >
+                <ListItemText
+                  className={classes.drawerItem}
+                  disableTypography={false}
+                >
+                  Skills
+                </ListItemText>
+              </ListItem>
+              <ListItem
+                divider
+                button
+                component={Link}
+                onClick={() => setOpenDrawer(false)}
+                to="/userprofile"
+                disableTypography={false}
+              >
+                <ListItemText
+                  className={classes.drawerItem}
+                  disableTypography={false}
+                >
+                  Expertise
+                </ListItemText>
+              </ListItem>
+
               <ListItem
                 divider
                 button
@@ -234,8 +332,9 @@ export default function ButtonAppBar(props) {
       <ElevationScroll {...props}>
         <AppBar position="fixed">
           <Toolbar>
+            <CodeIcon className={classes.CodeIcon} />
             <Typography variant="h6" className={classes.title}>
-              React development
+              Carlos A Avilez J.
             </Typography>
             {matches ? drawer : tabs}
           </Toolbar>
