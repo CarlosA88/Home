@@ -14,9 +14,15 @@ import { theme } from "./components/ui/Theme";
 import { CssBaseline } from "@material-ui/core";
 
 function App() {
+  function multiply(a, b) {
+    return a * b;
+  }
+  let multiplyByTwo = multiply.bind(2, 4);
+  console.log(multiplyByTwo);
+
   return (
     <div className="App">
-       <CssBaseline />
+      <CssBaseline />
       <AuthProvider>
         <ThemeProvider theme={theme}>
           <ButtonAppBar />

@@ -51,6 +51,7 @@ ElevationScroll.propTypes = {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
   },
   menuIcon: {
     marginRight: theme.spacing(2),
@@ -64,9 +65,18 @@ const useStyles = makeStyles((theme) => ({
   tabContainer: {
     marginLeft: "auto",
   },
+  tabContainerRight: {
+    marginRight: "auto",
+  },
   tabs: {
     textTransform: "none",
-    minWidth: 10,
+    minWidth: 125,
+    height: 70,
+  },
+  tabsLinks: {
+    color: "white",
+    textDecoration: "none",
+    fontSize: 17,
   },
   drawerIcon: {
     height: "50px",
@@ -82,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
   CodeIcon: {
     height: "50px",
     width: "50px",
+    color: "white",
   },
 }));
 
@@ -91,86 +102,52 @@ export default function ButtonAppBar(props) {
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const { currentUser } = useContext(AuthContext);
   const [openDrawer, setOpenDrawer] = useState(false);
-  // const [openMenu, setOpenMenu] = useState(false);
 
-  // const handleClick = (e) => {
-  //   setOpenMenu(true);
-  // };
-  // const handleMenuItemClick = (e) => {
-  //   setOpenMenu(false);
-  // };
-  // const handleClose = (e) => {
-  //   setOpenMenu(false);
-  // };
   const tabs = (
     <>
-      {currentUser ? (
-        <>
-          <Button>
-            <Link
-              // onClick={signOut}
-              style={{ color: "white", textTransform: "none" }}
-            >
-              Experience
-            </Link>
-          </Button>
-          <Button>
-            <Link
-              // onClick={signOut}
-              style={{ color: "white", textTransform: "none" }}
-            >
-              Education
-            </Link>
-          </Button>
-          <Button>
-            <Link
-              // onClick={signOut}
-              style={{ color: "white", textTransform: "none" }}
-            >
-              Skills
-            </Link>
-          </Button>
-          <Button>
-            <Link
-              // onClick={signOut}
-              style={{ color: "white", textTransform: "none" }}
-            >
-              Expertise
-            </Link>
-          </Button>
-          <Button>
-            <Link
-              onClick={signOut}
-              style={{ color: "white", textTransform: "none" }}
-            >
-              Sign Out
-            </Link>
-          </Button>
-          <Button className={classes.tabs}>
-            <Link
-              to="/userprofile"
-              className="navLink"
-              style={{ color: "white" }}
-            >
-              User settings
-            </Link>
-          </Button>
-        </>
-      ) : (
-        <Tabs className={classes.tabContainer}>
-          <Button className={classes.tabs}>
-            <Link to="/signin" style={{ color: "white" }}>
-              Sign In
-            </Link>
-          </Button>
+    
+        {currentUser ? (
+          <>
+            <Button className={classes.tabs}>
+              <Link to="/userprofile" className={classes.tabsLinks}>Experience</Link>
+            </Button>
+            <Button className={classes.tabs}>
+              <Link to="/userprofile" className={classes.tabsLinks}>Education</Link>
+            </Button>
+            <Button to="/userprofile" className={classes.tabs}>
+              <Link className={classes.tabsLinks}>Skills</Link>
+            </Button>
+            <Button className={classes.tabs}>
+              <Link to="/userprofile" className={classes.tabsLinks}>Expertise</Link>
+            </Button>
 
-          <Button className={classes.tabs}>
-            <Link to="/signup" style={{ color: "white" }}>
-              Sing Up
-            </Link>
-          </Button>
-        </Tabs>
-      )}
+            <Button className={classes.tabs}>
+              <Link onClick={signOut} to='' className={classes.tabsLinks}>
+                Sign Out
+              </Link>
+            </Button>
+            <Button className={classes.tabs}>
+              <Link to="/userprofile" className={classes.tabsLinks}>
+                User settings
+              </Link>
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button className={classes.tabs}>
+              <Link to="/signin" className={classes.tabsLinks}>
+                Sign In
+              </Link>
+            </Button>
+
+            <Button className={classes.tabs}>
+              <Link to="/signup" className={classes.tabsLinks}>
+                Sing Up
+              </Link>
+            </Button>
+          </>
+        )}
+      
     </>
   );
   //Smallers screens
@@ -185,6 +162,21 @@ export default function ButtonAppBar(props) {
         {currentUser ? (
           <>
             <List disablePadding>
+              <ListItem
+                divider
+                button
+                component={Link}
+                onClick={() => setOpenDrawer(false)}
+                to="/"
+                disableTypography={false}
+              >
+                <ListItemText
+                  className={classes.drawerItem}
+                  disableTypography={false}
+                >
+                  Home
+                </ListItemText>
+              </ListItem>
               <ListItem
                 divider
                 button
@@ -332,10 +324,14 @@ export default function ButtonAppBar(props) {
       <ElevationScroll {...props}>
         <AppBar position="fixed">
           <Toolbar>
-            <CodeIcon className={classes.CodeIcon} />
+            <IconButton component={Link} to="/">
+              <CodeIcon className={classes.CodeIcon} to="/" />
+            </IconButton>
             <Typography variant="h6" className={classes.title}>
               Carlos A Avilez J.
+              {/* {currentUser ? profiletabs : null} */}
             </Typography>
+
             {matches ? drawer : tabs}
           </Toolbar>
         </AppBar>
