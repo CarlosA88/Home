@@ -11,15 +11,30 @@ import UserProfile from "./UserProfile";
 //Adding theme
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./components/ui/Theme";
-import { CssBaseline } from "@material-ui/core";
+import { CssBaseline, Container } from "@material-ui/core";
+import Education from "./components/Profile/Education";
+import Experience from "./components/Profile/Experience";
+import Skill from "./components/Profile/Skill";
+import Expertise from "./components/Profile/Expertise";
+
+// const Main = () => {
+//   return (
+//     <>
+//       <Switch>
+//         <Route path="/" component={Home} exact />
+//         <Route path="/signin" component={SignIn} />
+//         <Route path="/signup" component={SignUp} />
+//         <Route path="/userprofile" component={UserProfile} />
+//         <Route path="/experience" component={Experience} />
+//         <Route path="/education" component={Education} />
+//         <Route path="/skill" component={Skill} />
+//         <Route path="/expertise" component={Expertise} />
+//       </Switch>
+//     </>
+//   );
+// };
 
 function App() {
-  function multiply(a, b) {
-    return a * b;
-  }
-  let multiplyByTwo = multiply.bind(2, 4);
-  console.log(multiplyByTwo);
-
   return (
     <div className="App">
       <CssBaseline />
@@ -34,12 +49,19 @@ function App() {
               style={{ textAlign: "center" }}
             />
           </header>
-          <Switch>
-            <Route path="/" component={Home} exact />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/userprofile" component={UserProfile} />
-          </Switch>
+          <Container maxWidth="md">
+            {" "}
+            <Switch>
+              <Route path="/" component={Home} exact />
+              <Route path="/signin" component={SignIn} />
+              <Route path="/signup" component={SignUp} />
+              <Route path="/userprofile" component={UserProfile} />
+              <Route path="/experience" component={Experience} />
+              <Route path="/education" component={Education} />
+              <Route path="/skill" component={Skill} />
+              <Route path="/expertise" component={Expertise} />
+            </Switch>
+          </Container>
         </ThemeProvider>
       </AuthProvider>
     </div>

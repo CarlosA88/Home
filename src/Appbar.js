@@ -105,49 +105,55 @@ export default function ButtonAppBar(props) {
 
   const tabs = (
     <>
-    
-        {currentUser ? (
-          <>
-            <Button className={classes.tabs}>
-              <Link to="/userprofile" className={classes.tabsLinks}>Experience</Link>
-            </Button>
-            <Button className={classes.tabs}>
-              <Link to="/userprofile" className={classes.tabsLinks}>Education</Link>
-            </Button>
-            <Button to="/userprofile" className={classes.tabs}>
-              <Link className={classes.tabsLinks}>Skills</Link>
-            </Button>
-            <Button className={classes.tabs}>
-              <Link to="/userprofile" className={classes.tabsLinks}>Expertise</Link>
-            </Button>
+      {currentUser ? (
+        <>
+          <Button className={classes.tabs}>
+            <Link to="/experience" className={classes.tabsLinks}>
+              Experience
+            </Link>
+          </Button>
+          <Button className={classes.tabs}>
+            <Link to="/education" className={classes.tabsLinks}>
+              Education
+            </Link>
+          </Button>
+          <Button className={classes.tabs}>
+            <Link to="/skill" className={classes.tabsLinks}>
+              Skills
+            </Link>
+          </Button>
+          <Button className={classes.tabs}>
+            <Link to="/expertise" className={classes.tabsLinks}>
+              Expertise
+            </Link>
+          </Button>
 
-            <Button className={classes.tabs}>
-              <Link onClick={signOut} to='' className={classes.tabsLinks}>
-                Sign Out
-              </Link>
-            </Button>
-            <Button className={classes.tabs}>
-              <Link to="/userprofile" className={classes.tabsLinks}>
-                User settings
-              </Link>
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button className={classes.tabs}>
-              <Link to="/signin" className={classes.tabsLinks}>
-                Sign In
-              </Link>
-            </Button>
+          <Button className={classes.tabs}>
+            <Link onClick={signOut} to="" className={classes.tabsLinks}>
+              Sign Out
+            </Link>
+          </Button>
+          <Button className={classes.tabs}>
+            <Link to="/userprofile" className={classes.tabsLinks}>
+              User settings
+            </Link>
+          </Button>
+        </>
+      ) : (
+        <>
+          <Button className={classes.tabs}>
+            <Link to="/signin" className={classes.tabsLinks}>
+              Sign In
+            </Link>
+          </Button>
 
-            <Button className={classes.tabs}>
-              <Link to="/signup" className={classes.tabsLinks}>
-                Sing Up
-              </Link>
-            </Button>
-          </>
-        )}
-      
+          <Button className={classes.tabs}>
+            <Link to="/signup" className={classes.tabsLinks}>
+              Sing Up
+            </Link>
+          </Button>
+        </>
+      )}
     </>
   );
   //Smallers screens
@@ -182,7 +188,7 @@ export default function ButtonAppBar(props) {
                 button
                 component={Link}
                 onClick={() => setOpenDrawer(false)}
-                to="/userprofile"
+                to="/experience"
                 disableTypography={false}
               >
                 <ListItemText
@@ -197,7 +203,7 @@ export default function ButtonAppBar(props) {
                 button
                 component={Link}
                 onClick={() => setOpenDrawer(false)}
-                to="/userprofile"
+                to="/education"
                 disableTypography={false}
               >
                 <ListItemText
@@ -212,7 +218,7 @@ export default function ButtonAppBar(props) {
                 button
                 component={Link}
                 onClick={() => setOpenDrawer(false)}
-                to="/userprofile"
+                to="/skill"
                 disableTypography={false}
               >
                 <ListItemText
@@ -227,7 +233,7 @@ export default function ButtonAppBar(props) {
                 button
                 component={Link}
                 onClick={() => setOpenDrawer(false)}
-                to="/userprofile"
+                to="/expertise"
                 disableTypography={false}
               >
                 <ListItemText
@@ -329,9 +335,7 @@ export default function ButtonAppBar(props) {
             </IconButton>
             <Typography variant="h6" className={classes.title}>
               Carlos A Avilez J.
-              {/* {currentUser ? profiletabs : null} */}
             </Typography>
-
             {matches ? drawer : tabs}
           </Toolbar>
         </AppBar>
