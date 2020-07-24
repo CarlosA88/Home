@@ -49,7 +49,7 @@ export function updateProfile() {
     //
     user
       .updateProfile({
-        displayName: "Update Name",
+        displayName: "Test User",
       })
       .then(function () {
         alert("User name updated");
@@ -112,3 +112,4 @@ export function signInGoogle() {
       alert("Authentication failed!");
     });
 }
+

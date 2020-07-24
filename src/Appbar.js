@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import {
   useScrollTrigger,
   CssBaseline,
-  Tabs,
   List,
   ListItem,
   ListItemText,
@@ -21,7 +20,7 @@ import { AuthContext } from "./Auth";
 //Drawer
 import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import { signOut } from "./Functions";
+import { signOut } from "./functions";
 import CodeIcon from "@material-ui/icons/Code";
 
 function ElevationScroll(props) {
@@ -68,15 +67,15 @@ const useStyles = makeStyles((theme) => ({
   tabContainerRight: {
     marginRight: "auto",
   },
-  tabs: {
+  buttonTabs: {
+    color: "white",
     textTransform: "none",
     minWidth: 125,
     height: 70,
-  },
-  tabsLinks: {
-    color: "white",
-    textDecoration: "none",
     fontSize: 17,
+  },
+  linksTabs: {
+    textDecoration: "none",
   },
   drawerIcon: {
     height: "50px",
@@ -107,51 +106,37 @@ export default function ButtonAppBar(props) {
     <>
       {currentUser ? (
         <>
-          <Button className={classes.tabs}>
-            <Link to="/experience" className={classes.tabsLinks}>
+          <Link to="/experience" className={classes.linksTabs}>
+            <Button to="/experience" className={classes.buttonTabs}>
               Experience
-            </Link>
-          </Button>
-          <Button className={classes.tabs}>
-            <Link to="/education" className={classes.tabsLinks}>
-              Education
-            </Link>
-          </Button>
-          <Button className={classes.tabs}>
-            <Link to="/skill" className={classes.tabsLinks}>
-              Skills
-            </Link>
-          </Button>
-          <Button className={classes.tabs}>
-            <Link to="/expertise" className={classes.tabsLinks}>
-              Expertise
-            </Link>
-          </Button>
+            </Button>
+          </Link>
+          <Link to="/education" className={classes.linksTabs}>
+            <Button className={classes.buttonTabs}>Education</Button>
+          </Link>
+          <Link to="/skill" className={classes.linksTabs}>
+            <Button className={classes.buttonTabs}>Skills</Button>
+          </Link>
+          <Link to="/expertise" className={classes.linksTabs}>
+            <Button className={classes.buttonTabs}>Expertise</Button>
+          </Link>
 
-          <Button className={classes.tabs}>
-            <Link onClick={signOut} to="" className={classes.tabsLinks}>
-              Sign Out
-            </Link>
-          </Button>
-          <Button className={classes.tabs}>
-            <Link to="/userprofile" className={classes.tabsLinks}>
-              User settings
-            </Link>
-          </Button>
+          <Link onClick={signOut} to="" className={classes.linksTabs}>
+            <Button className={classes.buttonTabs}>Sign Out</Button>
+          </Link>
+          <Link to="/userprofile" className={classes.linksTabs}>
+            <Button className={classes.buttonTabs}>User settings</Button>
+          </Link>
         </>
       ) : (
         <>
-          <Button className={classes.tabs}>
-            <Link to="/signin" className={classes.tabsLinks}>
-              Sign In
-            </Link>
-          </Button>
+          <Link to="/signin" className={classes.linksTabs}>
+            <Button className={classes.buttonTabs}>Sign In</Button>
+          </Link>
 
-          <Button className={classes.tabs}>
-            <Link to="/signup" className={classes.tabsLinks}>
-              Sing Up
-            </Link>
-          </Button>
+          <Link to="/signup" className={classes.linksTabs}>
+            <Button className={classes.buttonTabs}>Sing Up</Button>
+          </Link>
         </>
       )}
     </>
@@ -334,7 +319,8 @@ export default function ButtonAppBar(props) {
               <CodeIcon className={classes.CodeIcon} to="/" />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Carlos A Avilez J.
+              {/* Carlos A Avilez J. */}
+              {currentUser !== null ? currentUser.displayName : "Portfolio"}
             </Typography>
             {matches ? drawer : tabs}
           </Toolbar>
