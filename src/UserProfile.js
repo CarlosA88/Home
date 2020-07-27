@@ -18,14 +18,14 @@ const UserProfile = () => {
   }
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>User settings</h1>
+      <h1>User Settings</h1>
 
-      <Button color="inherit">
+      {/* <Button color="inherit">
         <Link onClick={getProfileData}>Get profile data</Link>
       </Button>
       <Button color="inherit">
         <Link onClick={updateProfile}>Update Display Name</Link>
-      </Button>
+      </Button> */}
       <Button color="inherit">
         <Link onClick={deleteUser}>Delete User</Link>
       </Button>

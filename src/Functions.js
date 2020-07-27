@@ -106,7 +106,7 @@ export function signInGoogle() {
     .then(function (result) {
       alert("User authenticated");
       var user = result.user;
-      console.log("User ===", user);
+      // console.log("User ===", user);
     })
     .catch(function (error) {
       alert("Authentication failed!");

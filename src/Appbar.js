@@ -78,8 +78,8 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
   },
   drawerIcon: {
-    height: "50px",
-    width: "50px",
+    height: 50,
+    width: 50,
   },
   drawer: {
     backgroundColor: theme.palette.common.blue,
@@ -87,10 +87,12 @@ const useStyles = makeStyles((theme) => ({
   drawerItem: {
     // ...theme.typography.tabs,
     color: "white",
+    width: 150,
+    textAlign: "center",
   },
   CodeIcon: {
-    height: "50px",
-    width: "50px",
+    height: 50,
+    width: 50,
     color: "white",
   },
 }));
@@ -102,6 +104,7 @@ export default function ButtonAppBar(props) {
   const { currentUser } = useContext(AuthContext);
   const [openDrawer, setOpenDrawer] = useState(false);
 
+  //Wider screen
   const tabs = (
     <>
       {currentUser ? (
@@ -125,7 +128,7 @@ export default function ButtonAppBar(props) {
             <Button className={classes.buttonTabs}>Sign Out</Button>
           </Link>
           <Link to="/userprofile" className={classes.linksTabs}>
-            <Button className={classes.buttonTabs}>User settings</Button>
+            <Button className={classes.buttonTabs}>User Settings</Button>
           </Link>
         </>
       ) : (
@@ -258,13 +261,28 @@ export default function ButtonAppBar(props) {
                   className={classes.drawerItem}
                   disableTypography={false}
                 >
-                  User settings
+                  User Settings
                 </ListItemText>
               </ListItem>
             </List>
           </>
         ) : (
           <List>
+            <ListItem
+              divider
+              button
+              component={Link}
+              onClick={() => setOpenDrawer(false)}
+              to="/"
+              disableTypography={false}
+            >
+              <ListItemText
+                className={classes.drawerItem}
+                disableTypography={false}
+              >
+                Home
+              </ListItemText>
+            </ListItem>
             <ListItem
               divider
               button
