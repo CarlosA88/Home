@@ -22,6 +22,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import { signOut } from "./functions";
 import CodeIcon from "@material-ui/icons/Code";
+import HomeIcon from "@material-ui/icons/Home";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -51,6 +52,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
+    // zIndex: 1302,
+    // position: "relative",
   },
   menuIcon: {
     marginRight: theme.spacing(2),
@@ -172,7 +175,6 @@ export default function ButtonAppBar(props) {
                 </ListItemText>
               </ListItem>
               <ListItem
-                divider
                 button
                 component={Link}
                 onClick={() => setOpenDrawer(false)}
@@ -187,7 +189,6 @@ export default function ButtonAppBar(props) {
                 </ListItemText>
               </ListItem>
               <ListItem
-                divider
                 button
                 component={Link}
                 onClick={() => setOpenDrawer(false)}
@@ -202,7 +203,6 @@ export default function ButtonAppBar(props) {
                 </ListItemText>
               </ListItem>
               <ListItem
-                divider
                 button
                 component={Link}
                 onClick={() => setOpenDrawer(false)}
@@ -233,7 +233,6 @@ export default function ButtonAppBar(props) {
               </ListItem>
 
               <ListItem
-                divider
                 button
                 component={Link}
                 onClick={() => {
@@ -284,7 +283,6 @@ export default function ButtonAppBar(props) {
               </ListItemText>
             </ListItem>
             <ListItem
-              divider
               button
               component={Link}
               onClick={() => setOpenDrawer(false)}
@@ -337,7 +335,6 @@ export default function ButtonAppBar(props) {
               <CodeIcon className={classes.CodeIcon} to="/" />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              {/* Carlos A Avilez J. */}
               {currentUser !== null ? currentUser.displayName : "Portfolio"}
             </Typography>
             {matches ? drawer : tabs}

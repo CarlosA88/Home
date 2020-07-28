@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 const Expertise = () => {
     const { currentUser } = useContext(AuthContext);
     if (!currentUser) {
-      return <Redirect to="/" />;
+      return <Redirect to="/signin" />;
     }
     return (
         <div style={{ textAlign: "center" }}>

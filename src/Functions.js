@@ -104,6 +104,7 @@ export function signInGoogle() {
     .auth()
     .signInWithPopup(provider)
     .then(function (result) {
+   
       alert("User authenticated");
       var user = result.user;
       // console.log("User ===", user);
@@ -112,4 +113,3 @@ export function signInGoogle() {
       alert("Authentication failed!");
     });
 }
-

@@ -9,32 +9,25 @@ import { AuthProvider } from "./Auth";
 import SignUp from "./SignUp";
 import UserProfile from "./UserProfile";
 //Adding theme
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import { theme } from "./components/ui/Theme";
-import { CssBaseline, Container } from "@material-ui/core";
+import { CssBaseline, Container, Grid } from "@material-ui/core";
 import Education from "./components/Profile/Education";
 import Experience from "./components/Profile/Experience";
 import Skill from "./components/Profile/Skill";
 import Expertise from "./components/Profile/Expertise";
+import PageNotFound from "./PageNotFound";
+import Header from "./components/ui/Header";
+import Footer from "./Footer";
 
-// const Main = () => {
-//   return (
-//     <>
-//       <Switch>
-//         <Route path="/" component={Home} exact />
-//         <Route path="/signin" component={SignIn} />
-//         <Route path="/signup" component={SignUp} />
-//         <Route path="/userprofile" component={UserProfile} />
-//         <Route path="/experience" component={Experience} />
-//         <Route path="/education" component={Education} />
-//         <Route path="/skill" component={Skill} />
-//         <Route path="/expertise" component={Expertise} />
-//       </Switch>
-//     </>
-//   );
-// };
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+}));
 
 function App() {
+  const classes = useStyles();
   return (
     <div className="App">
       <CssBaseline />
@@ -42,26 +35,31 @@ function App() {
         <ThemeProvider theme={theme}>
           <ButtonAppBar />
           <header className="App-header">
-            <img
-              src={logo}
-              className="App-logo"
-              alt="logo"
-              style={{ textAlign: "center" }}
-            />
+            <Header />
           </header>
-          <Container maxWidth="md">
-            {" "}
-            <Switch>
-              <Route path="/" component={Home} exact />
-              <Route path="/signin" component={SignIn} />
-              <Route path="/signup" component={SignUp} />
-              <Route path="/userprofile" component={UserProfile} />
-              <Route path="/experience" component={Experience} />
-              <Route path="/education" component={Education} />
-              <Route path="/skill" component={Skill} />
-              <Route path="/expertise" component={Expertise} />
-            </Switch>
+          <Container className={classes.root} fixed>
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="stretch"
+            >
+              <Switch>
+                <Route path="/" component={Home} exact />
+                <Route path="/signin" component={SignIn} />
+                <Route path="/signup" component={SignUp} />
+                <Route path="/userprofile" component={UserProfile} />
+                <Route path="/experience" component={Experience} />
+                <Route path="/education" component={Education} />
+                <Route path="/skill" component={Skill} />
+                <Route path="/expertise" component={Expertise} />
+                <Route component={PageNotFound} />
+              </Switch>
+            </Grid>
           </Container>
+          <footer>
+            <Footer />
+          </footer>
         </ThemeProvider>
       </AuthProvider>
     </div>
