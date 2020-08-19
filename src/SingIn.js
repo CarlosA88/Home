@@ -150,7 +150,8 @@ const SignIn = ({ history }) => {
             shadows: 9,
           }}
         >
-          <img src={google} alt="" height="25px" /> Sign in with Google
+          <img src={google} alt="" height="25px"/> &nbsp;&nbsp; Sign in
+          with Google
         </Button>
       </Box>
       <Box mt={8}>

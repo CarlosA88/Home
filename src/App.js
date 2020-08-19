@@ -11,7 +11,7 @@ import UserProfile from "./UserProfile";
 //Adding theme
 import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import { theme } from "./components/ui/Theme";
-import { CssBaseline, Container, Grid } from "@material-ui/core";
+import { CssBaseline, Container, Grid, Box } from "@material-ui/core";
 import Education from "./components/Profile/Education";
 import Experience from "./components/Profile/Experience";
 import Skill from "./components/Profile/Skill";
@@ -37,26 +37,31 @@ function App() {
           <header className="App-header">
             <Header />
           </header>
-          <Container className={classes.root} fixed>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="stretch"
-            >
-              <Switch>
-                <Route path="/" component={Home} exact />
-                <Route path="/signin" component={SignIn} />
-                <Route path="/signup" component={SignUp} />
-                <Route path="/userprofile" component={UserProfile} />
-                <Route path="/experience" component={Experience} />
-                <Route path="/education" component={Education} />
-                <Route path="/skill" component={Skill} />
-                <Route path="/expertise" component={Expertise} />
-                <Route component={PageNotFound} />
-              </Switch>
-            </Grid>
-          </Container>
+          <main>
+            <Container className={classes.root} fixed>
+              <div style={{ width: "100%" }}>
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="center"
+                  alignItems="center"
+                  p={1}
+                >
+                  <Switch>
+                    <Route path="/" component={Home} exact />
+                    <Route path="/signin" component={SignIn} />
+                    <Route path="/signup" component={SignUp} />
+                    <Route path="/userprofile" component={UserProfile} />
+                    <Route path="/experience" component={Experience} />
+                    <Route path="/education" component={Education} />
+                    <Route path="/skill" component={Skill} />
+                    <Route path="/expertise" component={Expertise} />
+                    <Route component={PageNotFound} />
+                  </Switch>
+                </Box>
+              </div>
+            </Container>
+          </main>
           <footer>
             <Footer />
           </footer>

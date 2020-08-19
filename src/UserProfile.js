@@ -17,8 +17,25 @@ const UserProfile = () => {
     return <Redirect to="/" />;
   }
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>User Settings</h1>
+    <div>
+      <h1>User Settings Options</h1>
+      <ul>
+        <li>
+          <Button color="inherit">
+            <Link onClick={deleteUser}>Delete User</Link>
+          </Button>
+        </li>
+        <li>
+          <Button color="inherit">
+            <Link onClick={verifyUser}>Verify user email</Link>
+          </Button>
+        </li>
+        <li>
+          <Button color="inherit">
+            <Link onClick={resetPassword}>Reset password</Link>
+          </Button>
+        </li>
+      </ul>
 
       {/* <Button color="inherit">
         <Link onClick={getProfileData}>Get profile data</Link>
@@ -26,15 +43,6 @@ const UserProfile = () => {
       <Button color="inherit">
         <Link onClick={updateProfile}>Update Display Name</Link>
       </Button> */}
-      <Button color="inherit">
-        <Link onClick={deleteUser}>Delete User</Link>
-      </Button>
-      <Button color="inherit">
-        <Link onClick={verifyUser}>Verify user email</Link>
-      </Button>
-      <Button color="inherit">
-        <Link onClick={resetPassword}>Reset password</Link>
-      </Button>
     </div>
   );
 };

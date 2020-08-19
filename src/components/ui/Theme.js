@@ -2,6 +2,8 @@ import { createMuiTheme } from "@material-ui/core/styles";
 // import purple from "@material-ui/core/colors/purple";
 // import green from "@material-ui/core/colors/green";
 
+//Color refences: https://material-ui.com/customization/color/
+//0d47a1 💅
 const arcBlue = "#0B72B9";
 const arcOrange = "#FFBA60";
 

@@ -22,7 +22,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import { signOut } from "./functions";
 import CodeIcon from "@material-ui/icons/Code";
-import HomeIcon from "@material-ui/icons/Home";
 
 function ElevationScroll(props) {
   const { children, window } = props;

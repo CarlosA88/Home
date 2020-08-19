@@ -149,7 +149,7 @@ const SignUp = ({ history }) => {
           }}
         >
           <img src={google} alt="" height="25px" />
-          Sign in with Google
+          &nbsp;&nbsp;Sign in with Google
         </Button>
       </Box>
       <Box mt={8}>

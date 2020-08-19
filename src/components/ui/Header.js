@@ -4,12 +4,7 @@ import logo from "../../assets/logo.svg";
 const Header = () => {
   return (
     <div>
-      <img
-        src={logo}
-        className="App-logo"
-        alt="logo"
-        style={{ textAlign: "center" }}
-      />
+      <img src={logo} className="App-logo" alt="logo" />
     </div>
   );
 };
