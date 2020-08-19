@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const [field1, setField1] = useState("");
-  const [field2, setField2] = useState("");
+  // const [field2, setField2] = useState("");
   // const slowFunct = useMemo(() => {
   //   return slowFunction(state);
   // }, [state]);
@@ -27,9 +27,8 @@ const Home = () => {
   // }
  
   const handleSubmit = (e) => {
-  
     e.preventDefault();
-    console.log(field1, field2);
+    console.log(field1);
     
   };
   return (
@@ -47,12 +46,12 @@ const Home = () => {
           value={field1}
           onChange={(e) => setField1(e.target.value)}
         />
-        <TextField
+        {/* <TextField
           id="standard-basic"
           label="Standard"
           value={field2}
           onChange={(e) => setField2(e.target.value)}
-        />
+        /> */}
         <Button variant="contained" color="secondary" onClick={handleSubmit}>
           Secondary
         </Button>
