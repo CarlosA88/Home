@@ -14,22 +14,41 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
-  const [field1, setField1] = useState("");
-  // const [field2, setField2] = useState("");
-  // const slowFunct = useMemo(() => {
-  //   return slowFunction(state);
-  // }, [state]);
+  const [number, setNumber] = useState(0);
+  // const doubleNumber = slowFunction(number);
+  const [dark, setDark] = useState(false);
+  const themeStyles = {
+    color: dark ? "red" : "blue",
+  };
 
-  // function slowFunction(num) {
-  //   for (let index = 0; index < 1000000000; index++) {}
-  //   console.log("SlowFunction");
-  //   return num * 2;
-  // }
- 
+  const doubleNumber = useMemo(() => {
+    return slowFunction(number);
+  }, [number]);
+  // const large = new Array(100).fill("nemo");
+  // const foundName = (array) => {
+  //   let time1 = performance.now();
+  //   console.log("Time to find nemo was" + time1);
+  //   for (let index = 0; index < array.length; index++) {
+  //     const element = array[index];
+  //     if (element === "nemo") {
+  //       console.log("nemo was found");
+  //     }
+  //   }
+  //   let time2 = performance.now();
+  //   console.log("Time to find nemo was" + (time2 - time1));
+  // };
+
+  // foundName(large);
+
+  function slowFunction(num) {
+    for (let index = 0; index < 1000000000; index++) {}
+    console.log("SlowFunction");
+    return num * 2;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(field1);
-    
+    console.log(number);
   };
   return (
     <div>
@@ -43,20 +62,20 @@ const Home = () => {
         <TextField
           id="standard-basic"
           label="Standard"
-          value={field1}
-          onChange={(e) => setField1(e.target.value)}
+          value={number}
+          type="number"
+          onChange={(e) => setNumber(e.target.value)}
         />
-        {/* <TextField
-          id="standard-basic"
-          label="Standard"
-          value={field2}
-          onChange={(e) => setField2(e.target.value)}
-        /> */}
-        <Button variant="contained" color="secondary" onClick={handleSubmit}>
+
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => setDark((prevDark) => !prevDark)}
+        >
           Secondary
         </Button>
       </form>
-      {field1}
+      <div style={themeStyles}> {doubleNumber}</div>
     </div>
   );
 };
