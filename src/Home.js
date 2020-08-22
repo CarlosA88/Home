@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { useMemo } from "react";
 import { TextField, makeStyles } from "@material-ui/core";
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,28 +18,18 @@ const Home = () => {
   const [number, setNumber] = useState(0);
   // const doubleNumber = slowFunction(number);
   const [dark, setDark] = useState(false);
-  const themeStyles = {
-    color: dark ? "red" : "blue",
-  };
 
+  const themeStyles = useMemo(() => {
+    return {
+      color: dark ? "red" : "blue",
+    };
+  }, [dark]);
+  useEffect(() => {
+    console.log("Use theme");
+  }, [themeStyles]);
   const doubleNumber = useMemo(() => {
     return slowFunction(number);
   }, [number]);
-  // const large = new Array(100).fill("nemo");
-  // const foundName = (array) => {
-  //   let time1 = performance.now();
-  //   console.log("Time to find nemo was" + time1);
-  //   for (let index = 0; index < array.length; index++) {
-  //     const element = array[index];
-  //     if (element === "nemo") {
-  //       console.log("nemo was found");
-  //     }
-  //   }
-  //   let time2 = performance.now();
-  //   console.log("Time to find nemo was" + (time2 - time1));
-  // };
-
-  // foundName(large);
 
   function slowFunction(num) {
     for (let index = 0; index < 1000000000; index++) {}
@@ -50,6 +41,54 @@ const Home = () => {
     e.preventDefault();
     console.log(number);
   };
+
+  const user = {
+    name: "kim",
+    active: true,
+    cart: [],
+    purchase: [],
+  };
+  let amazonHistory = [];
+  const compose = (f, g) => (...args) => f(g(...args));
+  const purchaseItem = (...fns) => {
+    return fns.reduce(compose);
+  };
+  console.log(
+    purchaseItem(
+      emptyCart,
+      buyItem,
+      applyTaxToItem,
+      addItemToCart
+    )(user, { name: "laptop", price: 300 })
+  );
+  console.log("History!! ", amazonHistory);
+
+  function addItemToCart(user, item) {
+    amazonHistory.push(user);
+    const updatecart = user.cart.concat(item);
+    return Object.assign({}, user, { cart: updatecart });
+  }
+  function applyTaxToItem(user) {
+    amazonHistory.push(user);
+    const { cart } = user;
+    const taxRate = 1.3;
+    const updatedCart = cart.map((item) => {
+      return {
+        name: item.name,
+        price: item.price * taxRate,
+      };
+    });
+    return Object.assign({}, user, { cart: updatedCart });
+  }
+  function buyItem(user) {
+    amazonHistory.push(user);
+    return Object.assign({}, user, { purchase: user.cart });
+  }
+  function emptyCart(user) {
+    amazonHistory.push(user);
+    return Object.assign({}, user, { cart: [] });
+  }
+
   return (
     <div>
       <h1> Welcome to my Portfolio</h1>
@@ -66,7 +105,6 @@ const Home = () => {
           type="number"
           onChange={(e) => setNumber(e.target.value)}
         />
-
         <Button
           variant="contained"
           color="secondary"
