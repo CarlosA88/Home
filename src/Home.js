@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
 
+
   const classes = useStyles();
   const [number, setNumber] = useState(0);
   // const doubleNumber = slowFunction(number);
@@ -117,6 +118,7 @@ const Home = () => {
       <div style={themeStyles}> {doubleNumber}</div>
 
   
+
   return (
     <div>
       <h1> Welcome to my Portfolio</h1>
