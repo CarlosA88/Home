@@ -14,8 +14,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Home = () => {
-
-
   const classes = useStyles();
   const [number, setNumber] = useState(0);
   // const doubleNumber = slowFunction(number);
@@ -34,62 +32,92 @@ const Home = () => {
   }, [number]);
 
   function slowFunction(num) {
-    for (let index = 0; index < 1000000000; index++) {}
+    for (let index = 0; index < 1; index++) {}
     console.log("SlowFunction");
     return num * 2;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(number);
+    // const resp = await fetch("https://jsonplaceholder.typicode.com/users");
+    // const data = await resp.json();
+    // console.table(data);
   };
+  const url = [
+    "https://jsonplaceholder.typicode.com/users",
+    "https://jsonplaceholder.typicode.com/posts",
+    "https://jsonplaceholder.typicode.com/albums",
+  ];
 
-  const user = {
-    name: "kim",
-    active: true,
-    cart: [],
-    purchase: [],
+  const getData = async () => {
+    try {
+      const [user, post, albums] = await Promise.all(
+        url.map((url) => fetch(url).then((resp) => resp.json()))
+      );
+      console.groupCollapsed("Json placeholder api");
+      console.table(user);
+      console.table(post);
+      console.table(albums);
+      console.groupEnd();
+    } catch (error) {
+      console.log(error);
+    }
   };
-  let amazonHistory = [];
-  const compose = (f, g) => (...args) => f(g(...args));
-  const purchaseItem = (...fns) => {
-    return fns.reduce(compose);
-  };
-  console.log(
-    purchaseItem(
-      emptyCart,
-      buyItem,
-      applyTaxToItem,
-      addItemToCart
-    )(user, { name: "laptop", price: 300 })
-  );
-  console.log("History!! ", amazonHistory);
+  getData();
+  // const user = {
+  //   name: "kim",
+  //   active: true,
+  //   cart: [],
+  //   purchase: [],
+  // };
+  // let amazonHistory = [];
+  // const compose = (f, g) => (...args) => f(g(...args));
+  // const purchaseItem = (...fns) => {
+  //   return fns.reduce(compose);
+  // };
+  // console.log(
+  //   purchaseItem(
+  //     emptyCart,
+  //     buyItem,
+  //     applyTaxToItem,
+  //     addItemToCart
+  //   )(user, { name: "laptop", price: 300 })
+  // );
+  // console.log("History!! ", amazonHistory);
 
-  function addItemToCart(user, item) {
-    amazonHistory.push(user);
-    const updatecart = user.cart.concat(item);
-    return Object.assign({}, user, { cart: updatecart });
-  }
-  function applyTaxToItem(user) {
-    amazonHistory.push(user);
-    const { cart } = user;
-    const taxRate = 1.3;
-    const updatedCart = cart.map((item) => {
-      return {
-        name: item.name,
-        price: item.price * taxRate,
-      };
-    });
-    return Object.assign({}, user, { cart: updatedCart });
-  }
-  function buyItem(user) {
-    amazonHistory.push(user);
-    return Object.assign({}, user, { purchase: user.cart });
-  }
-  function emptyCart(user) {
-    amazonHistory.push(user);
-    return Object.assign({}, user, { cart: [] });
-  }
+  // function addItemToCart(user, item) {
+  //   amazonHistory.push(user);
+  //   const updatecart = user.cart.concat(item);
+  //   return Object.assign({}, user, { cart: updatecart });
+  // }
+  // function applyTaxToItem(user) {
+  //   amazonHistory.push(user);
+  //   const { cart } = user;
+  //   const taxRate = 1.3;
+  //   const updatedCart = cart.map((item) => {
+  //     return {
+  //       name: item.name,
+  //       price: item.price * taxRate,
+  //     };
+  //   });
+  //   return Object.assign({}, user, { cart: updatedCart });
+  // }
+  // function buyItem(user) {
+  //   amazonHistory.push(user);
+  //   return Object.assign({}, user, { purchase: user.cart });
+  // }
+  // function emptyCart(user) {
+  //   amazonHistory.push(user);
+  //   return Object.assign({}, user, { cart: [] });
+  // }
+  // const promise = new Promise((resolve, reject) => {
+  //   if (true) {
+  //     resolve("Promise complete");
+  //   }
+  // });
+  // promise
+  // .then(result=> console.log(result+'!'))
+  // .then(result1=> console.log(result1+'?'));
 
   return (
     <div>
@@ -114,15 +142,8 @@ const Home = () => {
         >
           Secondary
         </Button>
+        <div style={themeStyles}> {doubleNumber}</div>
       </form>
-      <div style={themeStyles}> {doubleNumber}</div>
-
-  
-
-  return (
-    <div>
-      <h1> Welcome to my Portfolio</h1>
-
     </div>
   );
 };
