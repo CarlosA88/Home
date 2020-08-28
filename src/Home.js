@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import { useMemo } from "react";
 import { TextField, makeStyles } from "@material-ui/core";
 import { useEffect } from "react";
+import Education from "./components/Profile/Education";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +19,7 @@ const Home = () => {
   const [number, setNumber] = useState(0);
   // const doubleNumber = slowFunction(number);
   const [dark, setDark] = useState(false);
+  const [users, setUser] = useState();
 
   const themeStyles = useMemo(() => {
     return {
@@ -25,109 +27,59 @@ const Home = () => {
     };
   }, [dark]);
   useEffect(() => {
-    console.log("Use theme");
+    // console.log("Use theme");
   }, [themeStyles]);
+
   const doubleNumber = useMemo(() => {
     return slowFunction(number);
   }, [number]);
+  const getUser = async () => {
+    const user = await fetch("https://jsonplaceholder.typicode.com/users").then(
+      (resp) => {
+        const data = resp.json();
+        console.table(data);
+      }
+    );
+    setUser(user);
+  };
 
   function slowFunction(num) {
     for (let index = 0; index < 1; index++) {}
-    console.log("SlowFunction");
+    // console.log("SlowFunction");
     return num * 2;
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const resp = await fetch("https://jsonplaceholder.typicode.com/users");
-    // const data = await resp.json();
-    // console.table(data);
+    document.getElementById(
+      "standard-basic"
+    ).textContent = localStorage.getItem("myLocalData");
   };
-  const url = [
-    "https://jsonplaceholder.typicode.com/users",
-    "https://jsonplaceholder.typicode.com/posts",
-    "https://jsonplaceholder.typicode.com/albums",
+
+  const animals = [
+    { id: 1, name: "tiger", lastName: "Fernan" },
+    { id: 2, name: "lion", lastName: "Lezz" },
   ];
+  console.table(animals);
+  const names = ["James", "John", "Paul", "Ringo", "George"];
 
-  const getData = async () => {
-    try {
-      const [user, post, albums] = await Promise.all(
-        url.map((url) => fetch(url).then((resp) => resp.json()))
-      );
-      console.groupCollapsed("Json placeholder api");
-      console.table(user);
-      console.table(post);
-      console.table(albums);
-      console.groupEnd();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  getData();
-  // const user = {
-  //   name: "kim",
-  //   active: true,
-  //   cart: [],
-  //   purchase: [],
-  // };
-  // let amazonHistory = [];
-  // const compose = (f, g) => (...args) => f(g(...args));
-  // const purchaseItem = (...fns) => {
-  //   return fns.reduce(compose);
-  // };
-  // console.log(
-  //   purchaseItem(
-  //     emptyCart,
-  //     buyItem,
-  //     applyTaxToItem,
-  //     addItemToCart
-  //   )(user, { name: "laptop", price: 300 })
-  // );
-  // console.log("History!! ", amazonHistory);
-
-  // function addItemToCart(user, item) {
-  //   amazonHistory.push(user);
-  //   const updatecart = user.cart.concat(item);
-  //   return Object.assign({}, user, { cart: updatecart });
-  // }
-  // function applyTaxToItem(user) {
-  //   amazonHistory.push(user);
-  //   const { cart } = user;
-  //   const taxRate = 1.3;
-  //   const updatedCart = cart.map((item) => {
-  //     return {
-  //       name: item.name,
-  //       price: item.price * taxRate,
-  //     };
-  //   });
-  //   return Object.assign({}, user, { cart: updatedCart });
-  // }
-  // function buyItem(user) {
-  //   amazonHistory.push(user);
-  //   return Object.assign({}, user, { purchase: user.cart });
-  // }
-  // function emptyCart(user) {
-  //   amazonHistory.push(user);
-  //   return Object.assign({}, user, { cart: [] });
-  // }
-  // const promise = new Promise((resolve, reject) => {
-  //   if (true) {
-  //     resolve("Promise complete");
-  //   }
-  // });
-  // promise
-  // .then(result=> console.log(result+'!'))
-  // .then(result1=> console.log(result1+'?'));
-
+  
   return (
     <div>
       <h1> Welcome to my Portfolio</h1>
       <form
-        className={classes.root}
+    className={classes.root}
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
       >
+        <ul>
+          {names
+            .filter((u) => u.includes("J"))
+            .map((n) => {
+              return <li>{n}</li>;
+            })}
+        </ul>
         <TextField
           id="standard-basic"
           label="Standard"
@@ -144,8 +96,30 @@ const Home = () => {
         </Button>
         <div style={themeStyles}> {doubleNumber}</div>
       </form>
+      <Education />
     </div>
   );
 };
 
 export default Home;
+
+// const url = [
+//   "https://jsonplaceholder.typicode.com/users",
+//   "https://jsonplaceholder.typicode.com/posts",
+//   "https://jsonplaceholder.typicode.com/albums",
+// ];
+
+// const getData = async () => {
+//   try {
+//     const [user, post, albums] = await Promise.all(
+//       url.map((url) => fetch(url).then((resp) => resp.json()))
+//     );
+//     console.groupCollapsed("Json placeholder api");
+//     console.table(user);
+//     console.table(post);
+//     console.table(albums);
+//     console.groupEnd();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
