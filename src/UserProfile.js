@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import { Link, Redirect } from "react-router-dom";
 import {
-  getProfileData,
+  // getProfileData,
   verifyUser,
   resetPassword,
-  updateProfile,
+  // updateProfile,
   deleteUser,
 } from "./functions";
 import { AuthContext } from "./Auth";

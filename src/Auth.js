@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   //Update the user every time it change on db(Observer pattern)
   useEffect(() => {
     auth.onAuthStateChanged(setCurrentUser);
-  }, []);
+  }, [currentUser]);
 
   return (
     <AuthContext.Provider value={{ currentUser }}>
