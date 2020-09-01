@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
-import { useMemo } from "react";
 import { TextField, makeStyles } from "@material-ui/core";
-import { useEffect } from "react";
-import Education from "./components/Profile/Education";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,87 +13,39 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
-  const [number, setNumber] = useState(0);
-  // const doubleNumber = slowFunction(number);
-  const [dark, setDark] = useState(false);
-  const [users, setUser] = useState();
-
-  const themeStyles = useMemo(() => {
-    return {
-      color: dark ? "red" : "blue",
-    };
-  }, [dark]);
-  useEffect(() => {
-    // console.log("Use theme");
-  }, [themeStyles]);
-
-  const doubleNumber = useMemo(() => {
-    return slowFunction(number);
-  }, [number]);
-  const getUser = async () => {
-    const user = await fetch("https://jsonplaceholder.typicode.com/users").then(
-      (resp) => {
-        const data = resp.json();
-        console.table(data);
-      }
-    );
-    setUser(user);
-  };
-
-  function slowFunction(num) {
-    for (let index = 0; index < 1; index++) {}
-    // console.log("SlowFunction");
-    return num * 2;
-  }
+  // const [number, setNumber] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    document.getElementById(
-      "standard-basic"
-    ).textContent = localStorage.getItem("myLocalData");
   };
 
-  const animals = [
-    { id: 1, name: "tiger", lastName: "Fernan" },
-    { id: 2, name: "lion", lastName: "Lezz" },
-  ];
-  console.table(animals);
-  const names = ["James", "John", "Paul", "Ringo", "George"];
+  const useState = (initialVal) => {
+    let _val = initialVal;
+    const state = () => _val;
+    const setState = (newVal) => {
+      _val = newVal;
+    };
+    return [state, setState];
+  };
+  const [count, setCount] = useState(1);
+  console.log(count());
+  setCount(2);
+  console.log(count());
 
-  
   return (
     <div>
       <h1> Welcome to my Portfolio</h1>
       <form
-    className={classes.root}
+        className={classes.root}
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <ul>
-          {names
-            .filter((u) => u.includes("J"))
-            .map((n) => {
-              return <li>{n}</li>;
-            })}
-        </ul>
-        <TextField
-          id="standard-basic"
-          label="Standard"
-          value={number}
-          type="number"
-          onChange={(e) => setNumber(e.target.value)}
-        />
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={() => setDark((prevDark) => !prevDark)}
-        >
+        <TextField id="standard-basic" label="Standard" type="number" />
+        <Button variant="contained" color="secondary">
           Secondary
         </Button>
-        <div style={themeStyles}> {doubleNumber}</div>
       </form>
-      <Education />
     </div>
   );
 };
@@ -123,3 +72,7 @@ export default Home;
 //     console.log(error);
 //   }
 // };
+// const animals = [
+//   { id: 1, name: "tiger", lastName: "Fernan" },
+//   { id: 2, name: "lion", lastName: "Lezz" },
+// ];
