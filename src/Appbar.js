@@ -20,7 +20,7 @@ import { AuthContext } from "./Auth";
 //Drawer
 import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import { signOut } from "./functions";
+import { signOut } from "./Functions";
 import CodeIcon from "@material-ui/icons/Code";
 
 function ElevationScroll(props) {
@@ -112,9 +112,7 @@ export default function ButtonAppBar(props) {
       {currentUser ? (
         <>
           <Link to="/experience" className={classes.linksTabs}>
-            <Button className={classes.buttonTabs}>
-              Experience
-            </Button>
+            <Button className={classes.buttonTabs}>Experience</Button>
           </Link>
           <Link to="/education" className={classes.linksTabs}>
             <Button className={classes.buttonTabs}>Education</Button>

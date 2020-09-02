@@ -15,7 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { AuthContext } from "./Auth";
 import { Redirect, withRouter } from "react-router-dom";
-import { resetPassword, signInGoogle } from "./functions";
+import { resetPassword, signInGoogle } from "./Functions";
 import { auth } from "./Firebase";
 import google from "./assets/logos.jpg";
 
@@ -150,8 +150,8 @@ const SignIn = ({ history }) => {
             shadows: 9,
           }}
         >
-          <img src={google} alt="" height="25px"/> &nbsp;&nbsp; Sign in
-          with Google
+          <img src={google} alt="" height="25px" /> &nbsp;&nbsp; Sign in with
+          Google
         </Button>
       </Box>
       <Box mt={8}>

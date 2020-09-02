@@ -7,7 +7,7 @@ import {
   resetPassword,
   // updateProfile,
   deleteUser,
-} from "./functions";
+} from "./Functions";
 import { AuthContext } from "./Auth";
 
 const UserProfile = () => {

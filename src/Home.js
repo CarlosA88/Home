@@ -13,39 +13,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
-  // const [number, setNumber] = useState(0);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  };
-
-  const useState = (initialVal) => {
-    let _val = initialVal;
-    const state = () => _val;
-    const setState = (newVal) => {
-      _val = newVal;
-    };
-    return [state, setState];
-  };
-  const [count, setCount] = useState(1);
-  console.log(count());
-  setCount(2);
-  console.log(count());
 
   return (
     <div>
       <h1> Welcome to my Portfolio</h1>
-      <form
-        className={classes.root}
-        noValidate
-        autoComplete="off"
-        onSubmit={handleSubmit}
-      >
-        <TextField id="standard-basic" label="Standard" type="number" />
-        <Button variant="contained" color="secondary">
-          Secondary
-        </Button>
-      </form>
     </div>
   );
 };
