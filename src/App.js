@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./assets/logo.svg";
 import "./App.css";
 import SignIn from "./SingIn";
 import ButtonAppBar from "./Appbar";
@@ -11,7 +10,7 @@ import UserProfile from "./UserProfile";
 //Adding theme
 import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import { theme } from "./components/ui/Theme";
-import { CssBaseline, Container, Grid, Box } from "@material-ui/core";
+import { CssBaseline, Container, Box } from "@material-ui/core";
 import Education from "./components/Profile/Education";
 import Experience from "./components/Profile/Experience";
 import Skill from "./components/Profile/Skill";

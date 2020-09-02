@@ -112,7 +112,7 @@ export default function ButtonAppBar(props) {
       {currentUser ? (
         <>
           <Link to="/experience" className={classes.linksTabs}>
-            <Button to="/experience" className={classes.buttonTabs}>
+            <Button className={classes.buttonTabs}>
               Experience
             </Button>
           </Link>
@@ -126,7 +126,7 @@ export default function ButtonAppBar(props) {
             <Button className={classes.buttonTabs}>Expertise</Button>
           </Link>
 
-          <Link onClick={signOut} to="" className={classes.linksTabs}>
+          <Link onClick={signOut} to="/" className={classes.linksTabs}>
             <Button className={classes.buttonTabs}>Sign Out</Button>
           </Link>
           <Link to="/userprofile" className={classes.linksTabs}>
