@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import { TextField, makeStyles } from "@material-ui/core";
+
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -8,16 +8,26 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: "25ch",
     },
+    h1: {
+      backgroundColor: "red",
+      color: "blue",
+    },
   },
 }));
 
 const Home = () => {
   const classes = useStyles();
 
+  //Currying
+  // const multiply = (a, b) => a * b;
+  const multiplyCurried = (a) => (b) => a * b; //This is a closure
+  const multuplyBy5 = multiplyCurried(5); //we can store the value of 5 in the variable
+
+  console.log(multuplyBy5(5));//Output is 25
+
   return (
     <div>
       <h1> Welcome to my Portfolio</h1>
-      test
     </div>
   );
 };
